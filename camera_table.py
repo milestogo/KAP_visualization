@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
 from math import radians, degrees, tan, atan, atan2, pi, cos, sin, sqrt, hypot
 
-s = 2 # meters. Diameter of example object.
+s = 3.3 # meters. Diameter of example object.
 hs = [3.3, 6.6, 60., 100., 150.] # Height of camera above ground. Meters.
 degPhis = [0, 15., 22.5, 45.] # angle elevation above plumb of camera on rig. 0  = nadir. Degrees.
 
@@ -127,7 +127,7 @@ def reports():
     fig, axs = plt.subplots(ncols=len(degPhis), nrows=len(hs)) 
     #fig, axs = plt.subplots(ncols=len(degPhis), nrows=len(hs), sharey='row') #sharey looks tidy, crops info
     fig.set_size_inches(8.5, 11) 
-
+    f.write('<html><body>')
     f.write('''<h3>Proportions of Field of View</h3><p>
 %s sensor at %0.1fmm focal length</p>
 <p>Amount of the image taken up by a centered %0.1fm object,
@@ -172,6 +172,7 @@ for varying camera altitude and elevations from plumb.</p>
             f.write('</td>')
         f.write('</tr>')
     f.write('</table></p>')
+    f.write('</body></html>')
 
     fig.suptitle('''%s,  focal length %1.2fmm, field of view %1.2f deg vertical.
     Object %1.1fm in diameter.'''%(sensors[sensor][0].rstrip(),
